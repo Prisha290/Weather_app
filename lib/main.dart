@@ -2,50 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:weather_app/main.dart';
 
 void main() {
   runApp(const MyApp());
 }
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-
-
-//   // This widget is the root of your application.
-// ///////////////////////////
-//   @override
-//   Widget build(BuildContext context) {
-//     return const MaterialApp(
-//       title: 'Retrieve Text Input',
-//       home: MyCustomForm(),
-//     );
-//   }
-// }
-//
-// // Define a custom Form widget.
-// class MyCustomForm extends StatefulWidget {
-//   const MyCustomForm({super.key});
-//
-//   @override
-//   State<MyCustomForm> createState() => _MyCustomFormState();
-// }
-//
-// // Define a corresponding State class.
-// // This class holds the data related to the Form.
-// class _MyCustomFormState extends State<MyCustomForm> {
-//   // Create a text controller and use it to retrieve the current value
-//   // of the TextField.
-//   final myController = TextEditingController();
-//   final myController1 = TextEditingController();
-//   @override
-//   void dispose() {
-//     // Clean up the controller when the widget is disposed.
-//     myController.dispose();
-//     myController1.dispose();
-//     super.dispose();
-//   }
-// //////////////////////////
 
   @override
   Widget build(BuildContext context) {
@@ -56,145 +19,222 @@ class MyApp extends StatelessWidget {
 }
 class MyHomePage extends StatelessWidget {
   const MyHomePage({Key? key}) : super(key: key);
-  //final myController = TextEditingController();
-  //final myController1=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title:Text("Weather app"),
-      ),
-    body:
-        Center(child:
-      Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-    children: [
-      Center(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(14.0),
-              child: Container(
-                height:100,
-                width:200,
-
-                color:Colors.amberAccent,
-                child: Center(
-                  child: TextField (
-                   // controller:myController,
-                    decoration: InputDecoration(
-                        border: InputBorder.none,
-
-                        labelText: 'longitude',
-                        hintText: 'Enter Your Longitude:'
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(14.0),
-              child: Container(
-                height:100,
-                width:200,
-                color:Colors.amberAccent,
-                child: TextField (
-                  style:TextStyle(fontSize:40,),
-                 // controller:myController1,
-                  decoration: InputDecoration(
-                      border: InputBorder.none,
-                      labelText: 'latitude',
-                      hintText: 'Enter the latitude:'
-                  ),
-                ),
-              ),
-            ),
-          ],
+        appBar: AppBar(
+          backgroundColor: Colors.orangeAccent,
+          title:Center(child: Text("How's the Weather there?",style:TextStyle(fontSize: 30,color:Colors.black,fontWeight:FontWeight.w900))),
         ),
-      ),
-        FutureBuilder(
-            future: apicall("50","60"),
-            builder:(context,snapshot){
-              if(snapshot.hasData){
-                return Column(
-                  children:[
-                 // color:Colors.lightBlue,
-                   Padding(
+        body:
+        Center(child:
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FutureBuilder(
+                future: apicall("50","60"),
+                builder:(context,snapshot){
+                  if(snapshot.hasData){
+                    return Column(
+                        children:[
 
-                    padding: const EdgeInsets.all(10.0),
+                          Row(
 
-                    child: Text(snapshot.data["description"]),
+                            children: [
+                              Padding(
+                                padding: const  EdgeInsets. fromLTRB(440, 0, 0.0, 5.0),
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                                        color:Colors.yellow.shade300,
+                                        border: Border.all(color: Colors.black87)
+                                    ),
+                                    height:70,
+                                    width:300,
+                                    child:Column(
+                                        children:[
+                                          Padding(
+                                            padding: const  EdgeInsets. fromLTRB(0.0, 26.0, 0.0, 5.0),
+                                            child: Text("LATITUDE IS 50" ,style:TextStyle(fontSize: 16,fontWeight:FontWeight.w900)),
+                                          ),
 
-                  ),
+                                        ]
+                                    )
+                                ),
+                              ),
 
-              ]
-                );
-              }
-              else
-                {
-                  return CircularProgressIndicator();
-                }
-            } ),
-    //     Center(
-    //       child: Column(
-    //         children: [
-    //           Padding(
-    //             padding: const EdgeInsets.all(14.0),
-    //             child: Container(
-    //               height:100,
-    //               width:200,
-    //
-    //               color:Colors.amberAccent,
-    //               child: Center(
-    //                 child: TextField (
-    // decoration: InputDecoration(
-    // border: InputBorder.none,
-    //                 labelText: 'longitude',
-    //                 hintText: 'Enter Your Longitude:'
-    // ),
-    // ),
-    //               ),
-    //             ),
-    //           ),
-    //   Padding(
-    //     padding: const EdgeInsets.all(14.0),
-    //     child: Container(
-    //       height:100,
-    //       width:200,
-    //       color:Colors.amberAccent,
-    //       child: TextField (
-    //               decoration: InputDecoration(
-    //                   border: InputBorder.none,
-    //                   labelText: 'latitude',
-    //                   hintText: 'Enter the latitude:'
-    //               ),
-    //       ),
-    //     ),
-    //   ),
-    //         ],
-    //       ),
-    //     )
+                              Padding(
+                                padding: const EdgeInsets.all(20.0),
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                                        color:Colors.yellow.shade300,
+                                        border: Border.all(color: Colors.black87)
+                                    ),
+                                    height:70,
+                                    width:300,
+                                    child:Column(
+                                        children:[
+                                          Padding(
+                                            padding: const  EdgeInsets. fromLTRB(0.0, 26.0, 0.0, 5.0),
+                                            child: Text("LONGITUDE IS 60" ,style:TextStyle(fontSize: 16,fontWeight:FontWeight.w900)),
+                                          ),
 
-    ],
-    )
+                                        ]
+                                    )
+                                ),
+                              ),
+
+                            ],
+                          ),
+                          // color:Colors.lightBlue,
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                                    color:Colors.yellow.shade200,
+                                    border: Border.all(color: Colors.black87)
+                                ),
+                                height:90,
+                                width:300,
+                                child:Column(
+                                    children:[
+                                      Padding(
+                                        padding: const  EdgeInsets. fromLTRB(0.0, 26.0, 0.0, 5.0),
+                                        child: Text("Current state is : "+ snapshot.data["description"] ,style:TextStyle(fontSize: 16,fontWeight:FontWeight.w700)),
+                                      ),
+                                      FaIcon(FontAwesomeIcons.temperatureLow),
+                                    ]
+                                )
+                            ),
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                                    color:Colors.yellow.shade200,
+                                    border: Border.all(color: Colors.black87)
+                                ),
+                                height:70,
+                                width:300,
+                                child:Center(
+                                  child: Column(
+                                      children:[
+                                        Padding(
+                                          padding: const  EdgeInsets. fromLTRB(0.0, 26.0, 0.0, 5.0),
+
+                                          child: Text("The Country is: "+ snapshot.data["Country"] ,style:TextStyle(fontSize: 16,fontWeight:FontWeight.w700)),
+                                        ),
+
+                                      ]
+                                  ),
+                                )
+                            ),
+                          ),
+
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                                    color:Colors.yellow.shade200,
+                                    border: Border.all(color: Colors.black87)
+                                ),
+                                height:90,
+                                width:300,
+                                child:Column(
+                                    children:[
+                                      Padding(
+                                        padding: const  EdgeInsets. fromLTRB(0.0, 26.0, 0.0, 5.0),
+                                        child: Text("Wind speed : "+ snapshot.data["Wind-speed"] ,style:TextStyle(fontSize: 16,fontWeight:FontWeight.w700)),
+                                      ),
+                                      FaIcon(FontAwesomeIcons.wind),
+                                    ]
+                                )
+                            ),
+                          ),
+
+
+
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                                    color:Colors.yellow.shade200,
+                                    border: Border.all(color: Colors.black87)
+                                ),
+                                height:70,
+                                width:300,
+                                child:Column(
+                                    children:[
+                                      Text( "Temperature is : "+ snapshot.data["temperature"] ,style:TextStyle(fontSize: 16,fontWeight:FontWeight.w700)),
+                                      FaIcon(FontAwesomeIcons.temperatureLow),
+                                    ]
+                                )
+                            ),
+                          ),
+
+
+
+
+
+
+
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.all(Radius.circular(45.0)),
+                                  color:Colors.yellow.shade200,
+                                  border: Border.all(color: Colors.black87)
+                              ),
+                              height:70,
+                              width:300,
+                              child:Column(
+                                  children:[
+                                    Text( "Humidity is : "+ snapshot.data["Humidity"] ,style:TextStyle(fontSize: 16,fontWeight:FontWeight.w700)),
+                                    FaIcon(FontAwesomeIcons.cloud),
+                                  ]
+                              ),
+                            ),
+                          )
+
+
+
+
+
+
+                        ]
+                    );
+                  }
+                  else
+                  {
+                    return CircularProgressIndicator();
+                  }
+                } ),
+          ],
+
         )
-
-    );
+        ));
   }
 }
-
+int a=10;
 Future apicall(a,b) async{
 
   String text="https://api.openweathermap.org/data/2.5/weather?lat="+a+"&lon="+b+"&appid=1c05ee004e7a37d9f1f4270cb855c961";
   final url=Uri.parse(text);
-      //final url=URL.parse("")
+  //final url=URL.parse("")
+
+  print((a.toString()).runtimeType);
   final response = await http.get(url);
   print(response.body);
   final json=jsonDecode(response.body);
   print(json["weather"][0]["main"]);
-  final output={"description": json["weather"][0]["description"],"temperature": json["main"]["temp"]};
+  final output={"description": json["weather"][0]["description"],"temperature": json["main"]["temp"].toString(),"Humidity":json["main"]["humidity"].toString(),"Wind-speed":json["wind"]["speed"].toString(),"Country":json["sys"]["country"]};
   //return json["weather"][0]["description"];
   return output;
-  //final data =
 }
-
